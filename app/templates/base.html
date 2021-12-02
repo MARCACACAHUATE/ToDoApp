@@ -1,0 +1,34 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+{{super()}}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/navbar.css') }}">
+    <title>
+        {% block title %}
+        Malamon |
+        {% endblock %}
+    </title>
+{% endblock %}
+
+<!-- Podemos indicar donde se incrustaran los htmls a los que extendamos, tienen que 
+tener los mismo nombres de block -->
+{% block body %}
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {% endblock %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" data-dismiss="alert" class="close">
+                X
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+    {% block scripts%}
+        {{super()}}
+    {% endblock%}
+{% endblock %}

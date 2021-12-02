@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    {{super()}}
+    Login
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <form action="{{ url_for('auth.login')}}" method="get">
+            {{wtf.quick_form(login_form)}}
+        </form>
+    </div>
+
+{% endblock %}

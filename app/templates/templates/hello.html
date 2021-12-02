@@ -1,0 +1,49 @@
+<!-- Podemos hacer modulos html que podemos reutilizar en otros templates igules 
+para esto usamos el keyword extends y dentro de donde se llamo el html se debe indicar 
+donde se quiere usar ese block html-->
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+<!-- Este modulo de html lo utilizamos para renderizar los forms que le pasamos -->
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title%}
+    {{super()}}
+    Bienvenido
+{%endblock%}
+
+<!-- Este es el block de html que se incrustara en el html donde se extiende, tienen
+que tener el mismo nombre-->
+{% block content %}
+<!-- Este es if comun que se utiliza como todo if -->
+{% if username %}
+    <h1>Que onda mi estimado {{username}}</h1>
+{% endif %}
+
+{% if user_ip %}
+    <div>
+
+        <h1>Donde estan perros, tu ip es {{user_ip}}</h1>
+    </div>
+{% else %}
+    <a href="{{ url_for('index') }}">No esta tu pinche ip</a>
+{% endif %}
+
+<ul>
+    <!--Este for loop funciona igual que cualquier otro for-->
+    {% for todo in todos %}
+        {{ macro.render_todo(todo)}}
+    {% endfor %}
+</ul>
+
+<!-- Para renderizar los forms creados desde flask  -->
+<div class="container">
+    <form action="{{ url_for('home') }}" method="post">
+        <!-- Esta es la forma de renderizar el forms, esta no utiliza el bootstrap 
+            {{ login_form.username }}
+            {{ login_form.username.label}}
+        -->
+        <!-- Esta es la forma de renerizar utilizando el bootstrap para wtf -->
+        {{ wtf.quick_form(login_form) }}
+    </form>
+</div>
+{% endblock %}
