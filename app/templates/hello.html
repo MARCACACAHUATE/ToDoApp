@@ -16,16 +16,16 @@ que tener el mismo nombre-->
 {% block content %}
 <!-- Este es if comun que se utiliza como todo if -->
 {% if username %}
-    <h1>Que onda mi estimado {{username}}</h1>
+    <h1>Que onda mi estimado </h1>
 {% endif %}
 
 {% if user_ip %}
     <div>
 
-        <h1>Donde estan perros, tu ip es {{user_ip}}</h1>
+        <h1>Donde estan perros, tu ip es </h1>
     </div>
 {% else %}
-    <a href="{{ url_for('index') }}">No esta tu pinche ip</a>
+    <a href="">No esta tu pinche ip</a>
 {% endif %}
 
 <ul>
@@ -35,15 +35,14 @@ que tener el mismo nombre-->
     {% endfor %}
 </ul>
 
-<!-- Para renderizar los forms creados desde flask  -->
-<div class="container">
-    <form action="{{ url_for('home') }}" method="post">
-        <!-- Esta es la forma de renderizar el forms, esta no utiliza el bootstrap 
-            {{ login_form.username }}
-            {{ login_form.username.label}}
-        -->
-        <!-- Esta es la forma de renerizar utilizando el bootstrap para wtf -->
-        {{ wtf.quick_form(login_form) }}
-    </form>
-</div>
+    <!-- Para renderizar los forms creados desde flask  -->
+    <div class="container">
+        <form action="{{ url_for('home') }}" method="post">
+            <!-- Esta es la forma de renderizar el forms, esta no utiliza el bootstrap 
+                {{ login_form.username }}
+                {{ login_form.username.label}}
+            -->
+            <!-- Esta es la forma de renerizar utilizando el bootstrap para wtf -->
+        </form>
+    </div>
 {% endblock %}

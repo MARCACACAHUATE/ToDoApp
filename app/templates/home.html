@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import 'macros.html' as macro %}
+
+
+{% block title %}
+    {{super()}}
+    Home
+{% endblock %}
+
+
+{% block body %}
+    {{super()}}
+    <p>Este parrafo si jala ahuevo</p>
+
+    <!-- Render ToDo List -->
+    <ul>
+        {% for todo in todos  %}
+            {{ macro.render_todo(todo) }}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
