@@ -2,7 +2,9 @@ from flask import render_template
 
 from app import create_app
 
-app = create_app()
+app, db = create_app()
+
+from models.users import User
 
 todos = ["Caca", "Pipi", "Popo"]
 
